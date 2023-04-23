@@ -12,15 +12,15 @@ class MemeEngine():
 
         if img.size[0] > 500:
             ratio = float(img.size[0]) / float(img.size[1])
-            height = int(ratio * width)
+            height = int(width / ratio)
             img = img.resize((width, height))
 
         d = ImageDraw.Draw(img)
         # font=ImageFont.truetype("./fonts/LilitaOne-Regular.ttf")
 
-        quote_w = random.randint(20, img.size[0] / 2)
+        quote_w = random.randint(20, img.size[0] / 4)
         quote_h = random.randint(20, img.size[1] - 100)
-        font = ImageFont.truetype("./_data/fonts/Futura-Heavy-font.ttf", 30)
+        font = ImageFont.truetype("./_data/fonts/Futura-Heavy-font.ttf", 25)
         font1 = ImageFont.truetype("./_data/fonts/Futura-Heavy-font.ttf", 20)
         d.text((quote_w, quote_h), text, font=font, fill='white')
         d.text((quote_w + 20, quote_h + 30), f'- {author}', font=font1, fill='white')
