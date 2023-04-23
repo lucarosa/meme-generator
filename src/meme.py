@@ -1,7 +1,7 @@
 import os
 import random
-
-# @TODO Import your Ingestor and MemeEngine classes
+from QuoteEngine import Ingestor
+from MemeEngine import MemeEngine
 
 
 def generate_meme(path=None, body=None, author=None):
@@ -45,4 +45,5 @@ if __name__ == "__main__":
     # body - quote body to add to the image
     # author - quote author to add to the image
     args = None
-    print(generate_meme(args.path, args.body, args.author))
+    # print(generate_meme(args.path, args.body, args.author))
+    print(generate_meme())
