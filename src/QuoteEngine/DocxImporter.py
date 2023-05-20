@@ -5,6 +5,17 @@ from typing import List
 
 
 class DocxImporter(IngestorInterface):
+    """
+    A class for importing and parsing Docx files to extract quotes.
+
+    Attributes:
+        allowed_extension (List[str]): List of allowed file extensions for Docx files.
+
+    Methods:
+        parse(cls, path: str) -> List[QuoteModel]:
+            Parses the Docx file at the specified path and returns a list of QuoteModel objects.
+
+    """
     allowed_extension = ['docx']
 
     @classmethod

@@ -4,10 +4,32 @@ import os
 
 
 class MemeEngine():
+    """
+    A class for generating memes by adding text to images.
+
+    Attributes:
+        out_dir (str): The output directory where the generated memes will be saved.
+
+    Methods:
+        make_meme(self, img_path: str, text: str, author: str, width=500) -> str:
+            Generates a meme by adding text to the image at the specified path and returns the path of the generated meme.
+
+    """
+
     def __init__(self, out_dir: str):
+        """
+        Initializes a MemeEngine object.
+
+        Args:
+            out_dir (str): The output directory where the generated memes will be saved.
+
+        """
         self.out_dir = out_dir
 
-    def make_meme(self, img_path: str, text: str, author: str, width=500) -> str:
+    def make_meme(
+            self, img_path: str, text: str,
+            author: str, width=500) -> str:
+
         img = Image.open(img_path)
 
         if img.size[0] > 500:
@@ -16,7 +38,6 @@ class MemeEngine():
             img = img.resize((width, height))
 
         d = ImageDraw.Draw(img)
-        # font=ImageFont.truetype("./fonts/LilitaOne-Regular.ttf")
 
         quote_w = random.randint(20, img.size[0] / 4)
         quote_h = random.randint(20, img.size[1] - 100)

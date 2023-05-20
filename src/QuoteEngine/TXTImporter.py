@@ -4,6 +4,17 @@ from typing import List
 
 
 class TXTImporter(IngestorInterface):
+    """
+    A class for importing and parsing TXT files to extract quotes.
+
+    Attributes:
+        allowed_extension (List[str]): List of allowed file extensions for TXT files.
+
+    Methods:
+        parse(cls, path: str) -> List[QuoteModel]:
+            Parses the TXT file at the specified path and returns a list of QuoteModel objects.
+
+    """
     allowed_extension = ['txt']
 
     @classmethod

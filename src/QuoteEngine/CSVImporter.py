@@ -5,6 +5,17 @@ import pandas as pd
 
 
 class CSVImporter(IngestorInterface):
+    """
+    A class for importing and parsing CSV files to extract quotes.
+
+    Attributes:
+        allowed_extension (List[str]): List of allowed file extensions for CSV files.
+
+    Methods:
+        parse(cls, path: str) -> List[QuoteModel]:
+            Parses the CSV file at the specified path and returns a list of QuoteModel objects.
+
+    """
     allowed_extension = ['csv']
 
     @classmethod

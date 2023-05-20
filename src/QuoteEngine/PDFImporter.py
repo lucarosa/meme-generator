@@ -6,6 +6,17 @@ import random
 
 
 class PDFImporter(IngestorInterface):
+    """
+    A class for importing and parsing PDF files to extract quotes.
+
+    Attributes:
+        allowed_extension (List[str]): List of allowed file extensions for PDF files.
+
+    Methods:
+        parse(cls, path: str) -> List[QuoteModel]:
+            Parses the PDF file at the specified path and returns a list of QuoteModel objects.
+
+    """
     allowed_extension = ['pdf']
 
     @classmethod
