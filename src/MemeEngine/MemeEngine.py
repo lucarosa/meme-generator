@@ -41,8 +41,8 @@ class MemeEngine():
 
         quote_w = random.randint(20, img.size[0] / 4)
         quote_h = random.randint(20, img.size[1] - 100)
-        font = ImageFont.truetype("./_data/fonts/Futura-Heavy-font.ttf", 25)
-        font1 = ImageFont.truetype("./_data/fonts/Futura-Heavy-font.ttf", 20)
+        font = ImageFont.truetype("./src/_data/fonts/Futura-Heavy-font.ttf", 25)
+        font1 = ImageFont.truetype("./src/_data/fonts/Futura-Heavy-font.ttf", 20)
         d.text((quote_w, quote_h), text, font=font, fill='white')
         d.text((quote_w + 20, quote_h + 30), f'- {author}', font=font1, fill='white')
 

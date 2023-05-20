@@ -26,7 +26,7 @@ class PDFImporter(IngestorInterface):
 
         quotes = []
 
-        tmp = f'./tmp/{random.randint(0,100000)}.txt'
+        tmp = f'./src/tmp/{random.randint(0,100000)}.txt'
         call = subprocess.call(['pdftotext', "-layout", path, tmp])
 
         with open(tmp, "r") as f:

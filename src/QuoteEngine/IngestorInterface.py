@@ -24,7 +24,6 @@ class IngestorInterface(ABC):
     @classmethod
     def can_ingest(cls, path: str) -> bool:
         ext = path.split(".")[-1]
-        # print(f'the extension is {ext}')
         return ext in cls.allowed_extension
 
     @classmethod
