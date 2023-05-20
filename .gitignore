@@ -1,0 +1,6 @@
+src/tmp
+Src/static
+*/__pycache__/*
+*.pyc
+*DS_store
+*.sublime-workspace
