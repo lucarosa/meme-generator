@@ -26,28 +26,55 @@ class MemeEngine():
         """
         self.out_dir = out_dir
 
+    def resize_image(self):
+        ratio = float(self.img.size[0]) / float(self.img.size[1])
+        height = int(width / ratio)
+        self.img = self.img.resize((width, height))
+
+    def add_text(self, text, author):
+        d = ImageDraw.Draw(self.img)
+
+        quote_w = random.randint(
+            20,
+            self.img.size[0] / 4)
+
+        quote_h = random.randint(
+            20,
+            self.img.size[1] - 100)
+
+        font = ImageFont.truetype(
+            "./src/_data/fonts/Futura-Heavy-font.ttf", 25
+        )
+
+        font1 = ImageFont.truetype(
+            "./src/_data/fonts/Futura-Heavy-font.ttf", 20
+        )
+
+        d.text(
+            (quote_w, quote_h),
+            text,
+            font=font,
+            fill='white')
+
+        d.text(
+            (quote_w + 20, quote_h + 30),
+            f'- {author}',
+            font=font1,
+            fill='white')
+
     def make_meme(
             self, img_path: str, text: str,
             author: str, width=500) -> str:
 
-        img = Image.open(img_path)
+        self.img = Image.open(img_path)
 
-        if img.size[0] > 500:
-            ratio = float(img.size[0]) / float(img.size[1])
-            height = int(width / ratio)
-            img = img.resize((width, height))
+        if self.img.size[0] > 500:
+            self.resize_image()
 
-        d = ImageDraw.Draw(img)
-
-        quote_w = random.randint(20, img.size[0] / 4)
-        quote_h = random.randint(20, img.size[1] - 100)
-        font = ImageFont.truetype("./src/_data/fonts/Futura-Heavy-font.ttf", 25)
-        font1 = ImageFont.truetype("./src/_data/fonts/Futura-Heavy-font.ttf", 20)
-        d.text((quote_w, quote_h), text, font=font, fill='white')
-        d.text((quote_w + 20, quote_h + 30), f'- {author}', font=font1, fill='white')
+        self.add_text(text, author)
 
         fname = f'{random.randint(0,100000)}.jpg'
         out_path = os.path.join(self.out_dir, fname)
-        img.save(out_path)
+        self.img.save(out_path)
 
         return(out_path)
