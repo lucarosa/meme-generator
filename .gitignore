@@ -4,4 +4,5 @@ Src/static
 *.pyc
 *DS_store
 *.sublime-workspace
+*.sublime-project
 meme/
