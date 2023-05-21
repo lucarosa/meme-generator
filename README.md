@@ -18,4 +18,18 @@ Install xpdf library
 
 ## Installation
 1. Clone the repo
-```git clone https://github.com/lucarosa/meme-generator-udacity.git```
+```
+git clone https://github.com/lucarosa/meme-generator.git
+```
+
+2. Create virtual environment and install requirements
+```sh
+cd meme-generator
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+# Usage
+
+
