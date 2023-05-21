@@ -26,7 +26,7 @@ class MemeEngine():
         """
         self.out_dir = out_dir
 
-    def resize_image(self):
+    def resize_image(self, width):
         ratio = float(self.img.size[0]) / float(self.img.size[1])
         height = int(width / ratio)
         self.img = self.img.resize((width, height))
@@ -35,8 +35,8 @@ class MemeEngine():
         d = ImageDraw.Draw(self.img)
 
         quote_w = random.randint(
-            20,
-            self.img.size[0] / 4)
+            18,
+            int(self.img.size[0] / 8))
 
         quote_h = random.randint(
             20,
@@ -69,7 +69,7 @@ class MemeEngine():
         self.img = Image.open(img_path)
 
         if self.img.size[0] > 500:
-            self.resize_image()
+            self.resize_image(width)
 
         self.add_text(text, author)
 

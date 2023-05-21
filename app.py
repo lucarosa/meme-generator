@@ -2,27 +2,33 @@ import random
 import os
 import requests
 from flask import Flask, render_template, abort, request
-from QuoteEngine import Ingestor, QuoteModel
-from MemeEngine import MemeEngine
+from src.QuoteEngine import Ingestor
+from src.MemeEngine import MemeEngine
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    static_folder='src/static',
+    template_folder='src/templates'
+)
 
-meme = MemeEngine('./static')
+# print(os.path.abspath("insert-file-name-here"))
+
+meme = MemeEngine('src/static')
 
 
 def setup():
     """ Load all resources """
 
-    quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
-                   './_data/DogQuotes/DogQuotesDOCX.docx',
-                   './_data/DogQuotes/DogQuotesPDF.pdf',
-                   './_data/DogQuotes/DogQuotesCSV.csv']
+    quote_files = ['./src/_data/DogQuotes/DogQuotesTXT.txt',
+                   './src/_data/DogQuotes/DogQuotesDOCX.docx',
+                   './src/_data/DogQuotes/DogQuotesPDF.pdf',
+                   './src/_data/DogQuotes/DogQuotesCSV.csv']
 
     quotes = []
     for f in quote_files:
         quotes.extend(Ingestor.parse(f))
 
-    images_path = "./_data/photos/dog/"
+    images_path = "./src/_data/photos/dog/"
     imgs = []
     for root, dirs, files in os.walk(images_path):
         imgs = [os.path.join(root, name) for name in files]
@@ -40,7 +46,7 @@ def meme_rand():
     quote = random.choice(quotes)
 
     path = meme.make_meme(img, quote.body, quote.author)
-    return render_template('meme.html', path=path)
+    return render_template('meme.html', path=path.replace("src/", ""))
 
 
 @app.route('/create', methods=['GET'])
@@ -60,9 +66,9 @@ def meme_post():
 
     response = requests.get(image_url)
     if response.status_code == 200:
-        with open('./tmp/tmp.jpg', 'wb') as f:
+        with open('src/tmp/tmp.jpg', 'wb') as f:
             f.write(response.content)
-        img_path = './tmp/tmp.jpg'
+        img_path = 'src/tmp/tmp.jpg'
     else:
         abort(400, description="Invalid image URL")
 
@@ -70,7 +76,7 @@ def meme_post():
 
     os.remove(img_path)
 
-    return render_template('meme.html', path=path)
+    return render_template('meme.html', path=path.replace("src/", ""))
 
 
 if __name__ == "__main__":
