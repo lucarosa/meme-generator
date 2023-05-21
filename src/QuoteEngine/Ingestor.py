@@ -25,6 +25,7 @@ class Ingestor(IngestorInterface):
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse quotes using the correct Importer."""
         for importer in cls.importers:
             if importer.can_ingest(path):
                 return importer.parse(path)

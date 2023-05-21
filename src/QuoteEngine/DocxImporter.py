@@ -16,10 +16,12 @@ class DocxImporter(IngestorInterface):
             Parses the Docx file at the specified path and returns a list of QuoteModel objects.
 
     """
+
     allowed_extension = ['docx']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse quotes from docx files."""
         if not cls.can_ingest(path):
             raise Exception("Cannot ingest")
 

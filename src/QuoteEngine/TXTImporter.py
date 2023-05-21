@@ -15,10 +15,12 @@ class TXTImporter(IngestorInterface):
             Parses the TXT file at the specified path and returns a list of QuoteModel objects.
 
     """
+
     allowed_extension = ['txt']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse quotes from txt files."""
         if not cls.can_ingest(path):
             raise Exception("Cannot ingest")
 

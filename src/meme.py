@@ -1,12 +1,24 @@
+"""
+This module provides a meme generation functionality.
+
+It includes a function `generate_meme` that generates a meme given a path and a quote. The meme is created by combining an image and a quote, with optional body and author parameters.
+
+Usage:
+- If `path` is not provided, a random image is selected from the default image directory.
+- If `body` is not provided, a random quote is selected from the default quote files.
+- If `author` is not provided when `body` is used, an exception is raised.
+
+
 import os
 import random
 from .QuoteEngine import Ingestor, QuoteModel
 from .MemeEngine import MemeEngine
 import argparse
+"""
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given an path and a quote """
+    """Generate a meme given an path and a quote."""
     img = None
     quote = None
 
@@ -51,4 +63,3 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     print(generate_meme(args.path, args.body, args.author))
-    # print(generate_meme())

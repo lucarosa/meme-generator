@@ -16,10 +16,12 @@ class CSVImporter(IngestorInterface):
             Parses the CSV file at the specified path and returns a list of QuoteModel objects.
 
     """
+
     allowed_extension = ['csv']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse quotes from csv files."""
         if not cls.can_ingest(path):
             raise Exception("Cannot ingest")
 

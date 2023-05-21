@@ -1,3 +1,17 @@
+"""
+Meme Engine Module.
+
+This module provides a class for generating memes by adding text to images.
+
+Dependencies:
+    - PIL (Python Imaging Library)
+    - random
+    - os
+
+Classes:
+    - MemeEngine: A class for generating memes.
+
+"""
 from PIL import Image, ImageDraw, ImageFont
 import random
 import os
@@ -17,21 +31,17 @@ class MemeEngine():
     """
 
     def __init__(self, out_dir: str):
-        """
-        Initializes a MemeEngine object.
-
-        Args:
-            out_dir (str): The output directory where the generated memes will be saved.
-
-        """
+        """Initialize a MemeEngine object."""
         self.out_dir = out_dir
 
     def resize_image(self, width):
+        """Resize the image proportionally based on the specified width."""
         ratio = float(self.img.size[0]) / float(self.img.size[1])
         height = int(width / ratio)
         self.img = self.img.resize((width, height))
 
     def add_text(self, text, author):
+        """Add text and author to the meme."""
         d = ImageDraw.Draw(self.img)
 
         quote_w = random.randint(
@@ -65,7 +75,18 @@ class MemeEngine():
     def make_meme(
             self, img_path: str, text: str,
             author: str, width=500) -> str:
+        """
+        Generate a meme by adding text to the image at the specified path and return the path of the generated meme.
 
+        Args:
+            img_path (str): The path of the image to be used as the base for the meme.
+            text (str): The text to be added to the image.
+            author (str): The author of the quote.
+            width (int): The desired width of the meme image (default is 500).
+
+        Returns:
+            str: The path of the generated meme.
+        """
         self.img = Image.open(img_path)
 
         if self.img.size[0] > 500:

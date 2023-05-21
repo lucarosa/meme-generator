@@ -1,3 +1,12 @@
+"""
+This script serves as the entry point for generating memes using command-line arguments.
+
+It imports the `generate_meme` function from the `src.meme` module and uses the `argparse` module to parse command-line arguments.
+
+Usage:
+- Run the script with the desired command-line arguments to generate a meme.
+"""
+
 from src.meme import generate_meme
 import argparse
 
