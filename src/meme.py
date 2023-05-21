@@ -7,14 +7,13 @@ Usage:
 - If `path` is not provided, a random image is selected from the default image directory.
 - If `body` is not provided, a random quote is selected from the default quote files.
 - If `author` is not provided when `body` is used, an exception is raised.
-
+"""
 
 import os
 import random
 from .QuoteEngine import Ingestor, QuoteModel
 from .MemeEngine import MemeEngine
 import argparse
-"""
 
 
 def generate_meme(path=None, body=None, author=None):
