@@ -71,7 +71,11 @@ def meme_post():
     body = request.form['body']
     author = request.form['author']
 
-    response = requests.get(image_url)
+    try:
+        response = requests.get(image_url)
+    except requests.exceptions.RequestException:
+        abort(400, description="Invalid image URL")
+
     if response.status_code == 200:
         with open('src/tmp/tmp.jpg', 'wb') as f:
             f.write(response.content)

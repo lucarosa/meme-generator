@@ -18,7 +18,7 @@ Install xpdf library
 
 ## Installation
 1. Clone the repo
-```
+```sh
 git clone https://github.com/lucarosa/meme-generator.git
 ```
 
@@ -32,4 +32,16 @@ pip install -r requirements.txt
 
 # Usage
 
+## Flask app
+To run the meme generator using the Flask web app follow these steps
+
+1. Export app 
+```sh
+export FLASK_APP=app.py
+flask run --host 0.0.0.0 --port 3000 --reload
+``
+
+2. Open the app on http://0.0.0.0:3000
+
+If 
 
