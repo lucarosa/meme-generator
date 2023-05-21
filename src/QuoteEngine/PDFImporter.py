@@ -17,10 +17,12 @@ class PDFImporter(IngestorInterface):
             Parses the PDF file at the specified path and returns a list of QuoteModel objects.
 
     """
+
     allowed_extension = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """Parse quotes from pdf files."""
         if not cls.can_ingest(path):
             raise Exception("Cannot ingest")
 
